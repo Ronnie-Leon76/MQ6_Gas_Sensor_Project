@@ -15,7 +15,7 @@ const int gsmTransmitter=3;
 #include <splash.h>
 
 //Creating an object of the Adafruit_SSD1306
-Adafruit_SSD1306 disp(-1);
+Adafruit_SSD1306 disp(-1); // send -1 to the constructor so that none of the arduino pins is used as a reset for the display
 
 //The Software Serial will be used to enable serial communication using digital pins of the Arduino
 #include <SoftwareSerial.h>
@@ -58,7 +58,8 @@ int readLeakage()
 {
   int leakValue;
   leakValue=analogRead(analogGas);
-  return leakValue;
+  value = map(leakValue, 0, 1023, 0, 100)
+  return value;
 }
 
 //Function to control a motor.
